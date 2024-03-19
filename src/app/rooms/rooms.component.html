@@ -1,0 +1,61 @@
+<!-- <p>Welcome to {{hotelName}}</p> -->
+<pbhinv-header></pbhinv-header>
+<pbhinv-header></pbhinv-header>
+<pbhinv-header></pbhinv-header>
+<pbhinv-header></pbhinv-header>
+<div [hidden]="hideRooms">
+    No of Rooms: <div [innerText]="numberOfRooms"></div>
+    <p>{{totalPhotosBytesLoaded}}</p>
+</div>
+<!-- {{rooms.availableRooms ?? "No Rooms"}} -->
+<!-- <div>{{roomList | json}}</div> -->
+<div *ngIf="selectedRoom">
+    Selected Room: {{selectedRoom|json}}
+</div>
+<div *ngIf="getError$ | async as getError">
+    <h5>{{'We got the error ' + getError}}</h5>
+</div>
+<div *ngIf="roomsCount$ | async as roomsCount">
+    <h5>{{'No of Rooms using RxJs map: ' + roomsCount}}</h5>
+</div>
+<!-- <div *ngIf="rooms?.availableRooms"> -->
+<div *ngIf="rooms$ | async as rooms">
+    <pbhinv-rooms-list [title]="'Rooms List'" [rooms]="rooms" (selectedRoom)="selectRoom($event)"></pbhinv-rooms-list>
+</div>
+<!-- <div *ngIf="rooms?.availableRooms">
+    Rooms List
+    <table class="table">
+        <tr>
+            <th>Index</th>
+            <th>Even/Odd</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Room Price</th>
+            <th>Room Amenities</th>
+            <th>Photo</th>
+            <th>Checkin Time</th>
+            <th>Checkout Time</th>
+            <th>Rating</th>
+        </tr>
+        <tr *ngFor="let room of roomList; let e= even; let o=odd; let i=index;" [ngClass]="e?'even':'odd'">
+            <tr *ngFor="let room of roomList | slice : 0:2; let e= even; let o=odd; let i=index;" [ngClass]="e?'even':'odd'"></tr>
+            <td>{{i | percent}}</td>
+            <td>{{ e? "Even" : "Odd"}}</td>
+            <td>{{room.roomNumber}}</td>
+            <td>{{room.roomType}}</td>
+            <td>{{room.price | currency : 'INR'}}</td>
+            <td>{{room.amenities | lowercase}}</td>
+            <td><img [src]="room.photo" style="height: 100px;width: 100px;"></td>
+            <td>{{room.checkinTime | date}}</td>
+            <td>{{room.checkoutTime | date : 'dd/MMM/YYYY'}}</td>
+            <td>{{room.rating | number : "1.0-0"}}</td>
+        </tr>
+    </table>
+    {{roomList}}
+</div> -->
+<div>
+    <button (click)="toggle()">Toggle</button>
+</div>
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
