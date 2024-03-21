@@ -3,6 +3,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
 import { LOCAL_STORAGE_TOKEN } from './localstorage.token';
 import { InitService } from './init.service';
+import { ConfigForAnyService } from './services/config-for-any.service';
 
 @Component({
   selector: 'pbhinv-root',
@@ -22,7 +23,9 @@ export class AppComponent implements AfterViewInit, OnInit {
     @Inject(LOCAL_STORAGE_TOKEN)
     private localStorage: Storage,
 
-    private initService: InitService
+    private initService: InitService,
+    private configForAnyService: ConfigForAnyService
+
   ) {
     console.log('The initService configuration: ', initService.config);
   }

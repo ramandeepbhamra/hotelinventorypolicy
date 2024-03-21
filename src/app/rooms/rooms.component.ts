@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable, Subject, catchError, map, of } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ConfigForAnyService } from '../services/config-for-any.service';
 
 @Component({
   selector: 'pbhinv-rooms',
@@ -12,7 +13,10 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
-  constructor(private roomsService: RoomsService) {
+  constructor(
+    private roomsService: RoomsService,
+    private configForAny: ConfigForAnyService
+    ) {
     this.roomsService.getRooms
   }
 
