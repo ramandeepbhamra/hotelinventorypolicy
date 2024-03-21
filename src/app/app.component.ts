@@ -4,6 +4,8 @@ import { LoggerService } from './logger.service';
 import { LOCAL_STORAGE_TOKEN } from './localstorage.token';
 import { InitService } from './init.service';
 import { ConfigForAnyService } from './services/config-for-any.service';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'pbhinv-root',
@@ -24,7 +26,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     private localStorage: Storage,
 
     private initService: InitService,
-    private configForAnyService: ConfigForAnyService
+    private configForAnyService: ConfigForAnyService,
+    private router: Router
 
   ) {
     console.log('The initService configuration: ', initService.config);
@@ -50,5 +53,28 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.loggerService?.log('Aa gaya ni ohi billo time...');
 
     this.localStorage.setItem('hotelName', 'Hilton Hotel');
+
+    // Log all navigation events
+    // this.router.events.subscribe(
+    //   (event) => {
+    //     console.log(event);
+    //   }
+    // )
+
+    // Log filtered event based on instanceof
+    // this.router.events.subscribe(
+    //   (event) => {
+    //     if(event instanceof NavigationStart){
+    //       console.log(event);
+    //     }
+    //   }
+    // )
+
+    this.router.events.pipe(
+      filter((event) =>
+        event instanceof NavigationStart || event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      console.log(event);
+    })
   }
 }
