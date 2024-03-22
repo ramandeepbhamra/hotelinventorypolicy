@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailValidator/email-validator.directive';
 import { ROUTE_CONFIG_TOKEN } from './services/routeConfigForAny.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import { RoomsModule } from './rooms/rooms.module';
 
 function initFactory(initService: InitService)
@@ -55,6 +56,7 @@ function initFactory(initService: InitService)
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatSnackBarModule,
     FormsModule
   ],
   providers: [

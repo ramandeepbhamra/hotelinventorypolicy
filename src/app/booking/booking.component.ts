@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@ang
 import { BookingService } from './services/booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { CustomValidator } from './validators/custom-validator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'pbhinv-booking',
@@ -11,6 +12,7 @@ import { CustomValidator } from './validators/custom-validator';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
+  roomId = this.activatedRoute.snapshot.paramMap.get('roomId');;
   bookingForm!: FormGroup;
 
   get guests() {
@@ -20,7 +22,8 @@ export class BookingComponent implements OnInit {
   constructor(
     private configForAnyService: ConfigForAnyService,
     private fb: FormBuilder,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private activatedRoute: ActivatedRoute
   ) {
 
   }
@@ -100,18 +103,18 @@ export class BookingComponent implements OnInit {
       ]),
       tnc: new FormControl(false, { validators: [Validators.required] })
     },
-    {
-      updateOn: 'blur',
-      validators: [CustomValidator.validateDate]
-    }
+      {
+        updateOn: 'blur',
+        validators: [CustomValidator.validateDate]
+      }
     );
   }
 
   getBookingData() {
     //this.bookingForm.patchValue({
     this.bookingForm.setValue({
-      id: 1,
-      roomId: '2',
+      id: '1',
+      roomId: this.roomId,
       checkInDate: new Date('22-Aug-2012'),
       checkOutDate: new Date('11-Aug-2020'),
       bookingStatus: 'Booked',

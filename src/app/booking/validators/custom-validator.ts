@@ -46,6 +46,7 @@ export class CustomValidator {
             }
         }
 
+        //https://stackoverflow.com/questions/43445315/angular2-reactive-forms-delete-error
         if (control.get('checkOutDate')?.hasError('invalidDate')) {
             delete control.get('checkOutDate')?.errors?.["invalidDate"];
             control.get('checkOutDate')?.updateValueAndValidity({ onlySelf: true });

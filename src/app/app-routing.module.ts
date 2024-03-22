@@ -15,7 +15,7 @@ const routes: Routes = [
     canLoad: [LoginGuard]
   },
   {
-    path: 'booking',
+    path: 'booking/:roomId',
     loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule),
     // canActivate: [LoginGuard]
   },
