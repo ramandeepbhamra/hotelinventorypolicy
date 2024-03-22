@@ -1,33 +1,37 @@
-<!-- <p>Welcome to {{hotelName}}</p> -->
-<pbhinv-header></pbhinv-header>
-<pbhinv-header></pbhinv-header>
-<pbhinv-header></pbhinv-header>
-<pbhinv-header></pbhinv-header>
-<div [hidden]="hideRooms">
-    No of Rooms: <div [innerText]="numberOfRooms"></div>
-    <p>{{totalPhotosBytesLoaded}}</p>
-</div>
-<!-- {{rooms.availableRooms ?? "No Rooms"}} -->
-<!-- <div>{{roomList | json}}</div> -->
-<div *ngIf="selectedRoom">
-    Selected Room: {{selectedRoom|json}}
-</div>
-<div *ngIf="getError$ | async as getError">
-    <h5>{{'We got the error ' + getError}}</h5>
-</div>
-<div *ngIf="roomsCount$ | async as roomsCount">
-    <h5>{{'No of Rooms using RxJs map: ' + roomsCount}}</h5>
-</div>
-<div>
-    <hr><hr>
-    <router-outlet></router-outlet>
-    <hr><hr>
-</div>
-<!-- <div *ngIf="rooms?.availableRooms"> -->
-<div *ngIf="rooms$ | async as rooms">
-    <pbhinv-rooms-list [title]="'Rooms List'" [rooms]="rooms" (selectedRoom)="selectRoom($event)"></pbhinv-rooms-list>
-</div>
-<!-- <div *ngIf="rooms?.availableRooms">
+<div class="container">
+    <!-- <p>Welcome to {{hotelName}}</p> -->
+    <pbhinv-header></pbhinv-header>
+    <pbhinv-header></pbhinv-header>
+    <pbhinv-header></pbhinv-header>
+    <pbhinv-header></pbhinv-header>
+    <div [hidden]="hideRooms">
+        No of Rooms: <div [innerText]="numberOfRooms"></div>
+        <p>{{totalPhotosBytesLoaded}}</p>
+    </div>
+    <!-- {{rooms.availableRooms ?? "No Rooms"}} -->
+    <!-- <div>{{roomList | json}}</div> -->
+    <div *ngIf="selectedRoom">
+        Selected Room: {{selectedRoom|json}}
+    </div>
+    <div *ngIf="getError$ | async as getError">
+        <h5>{{'We got the error ' + getError}}</h5>
+    </div>
+    <div *ngIf="roomsCount$ | async as roomsCount">
+        <h5>{{'No of Rooms using RxJs map: ' + roomsCount}}</h5>
+    </div>
+    <div>
+        <hr>
+        <hr>
+        <router-outlet></router-outlet>
+        <hr>
+        <hr>
+    </div>
+    <!-- <div *ngIf="rooms?.availableRooms"> -->
+    <div *ngIf="rooms$ | async as rooms">
+        <pbhinv-rooms-list [title]="'Rooms List'" [rooms]="rooms"
+            (selectedRoom)="selectRoom($event)"></pbhinv-rooms-list>
+    </div>
+    <!-- <div *ngIf="rooms?.availableRooms">
     Rooms List
     <table class="table">
         <tr>
@@ -58,9 +62,10 @@
     </table>
     {{roomList}}
 </div> -->
-<div>
-    <button (click)="toggle()">Toggle</button>
-</div>
-<div>
-    <button (click)="addRoom()">Add Room</button>
+    <div>
+        <button (click)="toggle()">Toggle</button>
+    </div>
+    <div>
+        <button (click)="addRoom()">Add Room</button>
+    </div>
 </div>
