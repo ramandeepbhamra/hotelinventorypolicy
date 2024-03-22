@@ -22,7 +22,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   hotelName: string = "Hilton Hotel";
   numberOfRooms: number = 10;
-  hideRooms: boolean = false;
+  hideRooms: boolean = true;
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,

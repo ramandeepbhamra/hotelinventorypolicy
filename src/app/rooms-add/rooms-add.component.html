@@ -1,6 +1,6 @@
-<div class="container">
+<div>
     <div>{{roomAddedSucessfully}}</div>
-    <div>{{room |json}}</div>
+    <!-- <div>{{room |json}}</div>
     <div>
         pristine: {{addRoomForm.pristine|json}}<br>
         dirty: {{addRoomForm.dirty|json}}<br>
@@ -8,7 +8,7 @@
         invalid: {{addRoomForm.invalid|json}}<br>
         value: {{addRoomForm.value|json}}<br>
         valid: {{addRoomForm.valid|json}}<br>
-    </div>
+    </div> -->
     <div>
         <form #addRoomForm="ngForm" (ngSubmit)="addRoom(addRoomForm)">
             <div class="form-group">

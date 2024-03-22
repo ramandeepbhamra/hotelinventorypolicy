@@ -1,12 +1,14 @@
-<div class="container">
+<div>
     <!-- <p>Welcome to {{hotelName}}</p> -->
-    <pbhinv-header></pbhinv-header>
-    <pbhinv-header></pbhinv-header>
-    <pbhinv-header></pbhinv-header>
-    <pbhinv-header></pbhinv-header>
     <div [hidden]="hideRooms">
-        No of Rooms: <div [innerText]="numberOfRooms"></div>
-        <p>{{totalPhotosBytesLoaded}}</p>
+        <pbhinv-header></pbhinv-header>
+        <pbhinv-header></pbhinv-header>
+        <pbhinv-header></pbhinv-header>
+        <pbhinv-header></pbhinv-header>
+        <div [hidden]="hideRooms">
+            No of Rooms: <div [innerText]="numberOfRooms"></div>
+            <p>{{totalPhotosBytesLoaded}}</p>
+        </div>
     </div>
     <!-- {{rooms.availableRooms ?? "No Rooms"}} -->
     <!-- <div>{{roomList | json}}</div> -->

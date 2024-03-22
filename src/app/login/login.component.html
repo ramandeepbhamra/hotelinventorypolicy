@@ -1,22 +1,20 @@
 <div>
     <hr>
 </div>
-<div class="container">
-    <form (ngSubmit)="login()">
-        <div class="form-group">
-            <input [color]="'orange'" pbhinvHover pbhinvEmailValidator #loginEmail="ngModel" type="email"
-                class="form-control" name="email" [(ngModel)]="email" placeholder="Provide Email">
-                <div>{{loginEmail.errors|json}}</div>
-        </div>
-        <div class="form-group">
-            <input [color]="'steelBlue'" pbhinvHover type="password" class="form-control" name="password"
-                [(ngModel)]="password" placeholder="Provide Password">
-        </div>
-        <div>
-            <hr>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn-primary">Login</button>
-        </div>
-    </form>
-</div>
+<form (ngSubmit)="login()">
+    <div class="form-group">
+        <input [color]="'orange'" pbhinvHover pbhinvEmailValidator #loginEmail="ngModel" type="email"
+            class="form-control" name="email" [(ngModel)]="email" placeholder="Provide Email">
+        <div>{{loginEmail.errors|json}}</div>
+    </div>
+    <div class="form-group">
+        <input [color]="'steelBlue'" pbhinvHover type="password" class="form-control" name="password"
+            [(ngModel)]="password" placeholder="Provide Password">
+    </div>
+    <div>
+        <hr>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+</form>
