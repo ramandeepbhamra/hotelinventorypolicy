@@ -12,7 +12,7 @@ export class EmailValidatorDirective implements Validator {
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     const value = control.value as string;
 
-    if (value.includes('test')) {
+    if (value?.includes('test')) {
       return {
         invalidEmmail: true
       }

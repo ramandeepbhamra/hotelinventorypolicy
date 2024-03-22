@@ -1,1 +1,218 @@
-<p>booking works!</p>
+<div style="padding: 50px;">
+    <div>
+        pristine: {{bookingForm.pristine|json}}<br>
+        dirty: {{bookingForm.dirty|json}}<br>
+        valid: {{bookingForm.valid|json}}<br>
+        invalid: {{bookingForm.invalid|json}}<br>
+        value: {{bookingForm.value|json}}<br>
+        <hr>
+    </div>
+    <div>
+        <button type="button" mat-raised-button color="primary" (click)="addPassport()">Add Passport</button>
+    </div>
+    <div>
+        <hr>
+    </div>
+    <div>
+        <button type="button" mat-raised-button color="primary" (click)="deletePassport()">Delete Passport</button>
+    </div>
+    <div>
+        <form [formGroup]="bookingForm" class="example-form" (ngSubmit)="addBooking()">
+            <div class="example-container" *ngIf="bookingForm.get('passport')">
+                <mat-form-field appearance="fill">
+                    <mat-label>Passport</mat-label>
+                    <input type="text" matInput placeholder="Passport" formControlName="passport">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Room Id</mat-label>
+                    <input type="number" matInput placeholder="Room Id" formControlName="roomId">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Check In Date</mat-label>
+                    <input matInput [matDatepicker]="checkInDatePicker" formControlName="checkInDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="checkInDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkInDatePicker></mat-datepicker>
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Check Out Date</mat-label>
+                    <input matInput [matDatepicker]="checkOutDatePicker" formControlName="checkOutDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="checkOutDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkOutDatePicker></mat-datepicker>
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                    {{bookingForm.get('checkOutDate')?.errors | json}}
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Booking Sattus</mat-label>
+                    <input type="text" matInput placeholder="Booking Sattus" formControlName="bookingStatus">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Booking Amount</mat-label>
+                    <input type="number" matInput placeholder="Booking Amount" formControlName="bookingAmount">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Booking Date</mat-label>
+                    <input matInput [matDatepicker]="bookingDatePicker" formControlName="bookingDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #bookingDatePicker></mat-datepicker>
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Mobile Number</mat-label>
+                    <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <!-- {{'Ramandeep' | nameHi}} -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Guest Name</mat-label>
+                    <input type="text" matInput placeholder="Guest Name" formControlName="guestName">
+                    <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">Min 5 chars.</mat-error>
+                    {{bookingForm.get('guestName')?.errors | json}}
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Guest Email</mat-label>
+                    <input type="email" matInput placeholder="Guest Email" formControlName="guestEmail">
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div formGroupName="address">
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Address
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Address Line 1</mat-label>
+                                <input type="text" matInput placeholder="Address Line 1" formControlName="addressLine1">
+                                <mat-error *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Address
+                                    Line 1 is required.</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Address Line 1</mat-label>
+                                <input type="text" matInput placeholder="Address Line 2" formControlName="addressLine2">
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput placeholder="City" formControlName="city">
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput placeholder="State" formControlName="state">
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Country</mat-label>
+                                <input type="text" matInput placeholder="Country" formControlName="country">
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Zip Code</mat-label>
+                                <input type="text" matInput placeholder="Zip Code" formControlName="zipCode">
+                                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" type="button" (click)="addGuest()">Add Guest</button>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div formArrayName="guests">
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Guests
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let guest of guests.controls; let i=index;">
+                            <div [formGroupName]="i">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Gues Name</mat-label>
+                                    <input type="text" matInput placeholder="Gues Name" formControlName="guestName">
+                                    <mat-error
+                                        *ngIf="bookingForm.get(['guests', i, 'guestName'])?.hasError('required')">Guest
+                                        Name is required.</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Age</mat-label>
+                                    <input type="number" matInput placeholder="Gues Age" formControlName="age">
+                                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                                </mat-form-field>
+                                <div>
+                                    <button type="button" mat-raised-button color="primary"
+                                        (click)="removeGuest(i)">Remove
+                                        Guest</button>
+                                </div>
+                                <div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div>
+                <mat-checkbox formControlName="tnc">TnC</mat-checkbox>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" [disabled]="bookingForm.invalid">Book Room</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'booking',
     loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule),
-    canActivate: [LoginGuard]
+    // canActivate: [LoginGuard]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
