@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigForAnyService } from '../services/config-for-any.service';
 import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
+import { BookingService } from './services/booking.service';
+import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 
 @Component({
   selector: 'pbhinv-booking',
@@ -16,7 +18,8 @@ export class BookingComponent implements OnInit {
 
   constructor(
     private configForAnyService: ConfigForAnyService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private bookingService: BookingService
   ) {
 
   }
@@ -36,8 +39,13 @@ export class BookingComponent implements OnInit {
     // Give you those values as well well which are disabled in the form
     console.log(this.bookingForm.getRawValue());
 
-    this.bookingForm.reset();
-    this.initRoom();
+    // this.bookingForm.reset();
+    // this.initRoom();
+
+    // this.bookingService.bookRoom(
+    //   this.bookingForm.getRawValue()).subscribe((data => {
+    //     console.log(data);
+    //   }));
   }
 
   addGuest() {
@@ -96,22 +104,22 @@ export class BookingComponent implements OnInit {
       checkInDate: new Date('22-Aug-2012'),
       checkOutDate: new Date('11-Aug-2020'),
       bookingStatus: 'Booked',
-      bookingAmount: '',
-      bookingDate: '',
-      mobileNumber: '',
+      bookingAmount: '500',
+      bookingDate: new Date('11-Aug-2020'),
+      mobileNumber: '123456789',
       guestName: 'Rummy Singh',
       guestEmail: 'rummy@boss.com',
       address: {
         addressLine1: 'Line 1 Adrress',
-        addressLine2: '',
+        addressLine2: 'Line 1 Adrress',
         city: 'Jagraon',
         state: 'Punjab',
         country: 'India',
-        zipCode: ''
+        zipCode: '1478520'
       },
       guests: [
-        { guestName: '', age: '' },
-        { guestName: '', age: '' }
+        { guestName: 'Rummy', age: '40' },
+        { guestName: 'Singh', age: '42' }
       ],
       tnc: false
     });
@@ -121,8 +129,21 @@ export class BookingComponent implements OnInit {
     this.initRoom();
     this.getBookingData();
 
-    this.bookingForm.valueChanges.subscribe((data) => {
-      console.log('this.bookingForm.valueChanges.subscribe:', data);
-    });
+    // this.bookingForm.valueChanges.subscribe((data) => {
+    //   console.log('this.bookingForm.valueChanges.subscribe:', data);
+    // });
+
+    // this.bookingForm.valueChanges.pipe(
+    //   mergeMap((data) => this.bookingService.bookRoom(data))
+    // ).subscribe((data) => console.log(data));
+
+    // this.bookingForm.valueChanges.pipe(
+    //   switchMap((data) => this.bookingService.bookRoom(data))
+    // ).subscribe((data) => console.log(data));
+
+    this.bookingForm.valueChanges.pipe(
+      exhaustMap((data) => this.bookingService.bookRoom(data))
+    ).subscribe((data) => console.log(data));
+
   }
 }
