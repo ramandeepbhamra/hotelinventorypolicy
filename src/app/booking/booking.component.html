@@ -4,7 +4,6 @@
     valid: {{bookingForm.valid|json}}<br>
     invalid: {{bookingForm.invalid|json}}<br>
     value: {{bookingForm.value|json}}<br>
-    <hr>
 </div> -->
 <div>
     <hr>
@@ -50,7 +49,7 @@
                 <mat-datepicker-toggle matIconSuffix [for]="checkOutDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #checkOutDatePicker></mat-datepicker>
                 <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
-                <!-- {{bookingForm.get('checkOutDate')?.errors | json}} -->
+                {{bookingForm.get('checkOutDate')?.errors | json}}
             </mat-form-field>
         </div>
         <div class="example-container">

@@ -3,6 +3,7 @@ import { ConfigForAnyService } from '../services/config-for-any.service';
 import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
 import { BookingService } from './services/booking.service';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
+import { CustomValidator } from './validators/custom-validator';
 
 @Component({
   selector: 'pbhinv-booking',
@@ -72,7 +73,16 @@ export class BookingComponent implements OnInit {
       bookingAmount: [''],
       bookingDate: [''],
       mobileNumber: [''],
-      guestName: ['', { updateOn: 'blur', validators: [Validators.required, Validators.minLength(5)] }],
+      guestName: ['',
+        {
+          updateOn: 'blur',
+          validators: [
+            Validators.required,
+            Validators.minLength(5),
+            CustomValidator.validateName,
+            CustomValidator.validateSpecialChar('*')
+          ]
+        }],
       guestEmail: ['', { updateOn: 'blur', validators: [Validators.required] }],
       address: this.fb.group({
         addressLine1: ['', { validators: [Validators.required] }],
@@ -90,9 +100,10 @@ export class BookingComponent implements OnInit {
       ]),
       tnc: new FormControl(false, { validators: [Validators.required] })
     },
-    // {
-    //   updateOn: 'blur'
-    // }
+    {
+      updateOn: 'blur',
+      validators: [CustomValidator.validateDate]
+    }
     );
   }
 
