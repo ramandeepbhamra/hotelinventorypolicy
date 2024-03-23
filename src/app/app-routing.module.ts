@@ -4,8 +4,10 @@ import { EmployeeComponent } from './employee/employee.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './guards/login.guard';
+import { LearingBootstrapComponent } from './learing-bootstrap/learing-bootstrap.component';
 
 const routes: Routes = [
+  { path: 'bootstrap-learning', component: LearingBootstrapComponent },
   { path: 'employee', component: EmployeeComponent, canActivate: [LoginGuard] },
   { path: 'login', component: LoginComponent },
   {
