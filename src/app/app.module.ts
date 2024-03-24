@@ -1,10 +1,22 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// import { registerLocaleData } from '@angular/common';
+// https://angular.io/guide/i18n-optional-import-global-variants
+import '@angular/common/locales/global/fr';
+
+//https://stackoverflow.com/questions/51857723/en-in-locale-not-working-for-angular-currency-pipe
+// import { registerLocaleData } from '@angular/common';
+// import localeIn from '@angular/common/locales/en-IN';
+// registerLocaleData(localeIn);
+// import localeAr from '@angular/common/locales/ar-EG';
+// registerLocaleData(localeAr);
+// import localeFr from '@angular/common/locales/fr-CA';
+// registerLocaleData(localeFr);
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './appConfig/appConfig.service';
@@ -25,6 +37,7 @@ import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailValidator/email-validator.directive';
 import { ROUTE_CONFIG_TOKEN } from './services/routeConfigForAny.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LearingBootstrapModule } from './learing-bootstrap/learing-bootstrap.module';
 // import { RoomsModule } from './rooms/rooms.module';
 
 function initFactory(initService: InitService)
@@ -48,6 +61,7 @@ function initFactory(initService: InitService)
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LearingBootstrapModule,
     // RoomsModule,
     AppRoutingModule,
     LayoutModule,
